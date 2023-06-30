@@ -2,7 +2,7 @@ export const chapterContent: string[] = [
   `Le premier lundi du mois d’avril 1625, à cinq heures du soir,
         dans le village de Meung, des femmes courent dans la GrandRue. Des enfants crient devant les portes. Des hommes prennent
         leurs armes. Ils marchent vers l'hôtellerie du Franc-Meunier.
-        Arrivé là, chacun peut voir la cause de tout ce bruit. C’est un
+          Arrivé là, chacun peut voir la cause de tout ce bruit. C’est un
         jeune homme maigre, âgé de dix-huit ans. Sa veste de laine a été de couleur bleue. Elle ne l’est malheureusement plus. Son visage
         est brun, large comme chez beaucoup de gens intelligents, L’œil
         est bien ouvert. Une longue épée pend le long des jambes.
