@@ -4,7 +4,7 @@ export const Container = styled.div`
   gap: 20px;
 `;
 
-export const ChapterList = styled.ul`
+export const ChapterListContainer = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -35,7 +35,7 @@ export const ContentContainer = styled.div`
   flex-grow: 1;
 `;
 
-export const ChapterContent = styled.div`
+export const ChapterContentContainer = styled.div`
   background-color: #f5f5f5;
   padding: 24px;
   border-radius: 4px;

@@ -28,6 +28,7 @@ const Chapters: React.FC<ChaptersProps> = ({ troisMous }) => {
 
   const [book] = troisMous;
   const { chapters } = book;
+  console.log("chapters", chapters);
   const newWords = {
     I: "Je",
     love: "aime",

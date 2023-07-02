@@ -2,14 +2,6 @@ import mongoose from "mongoose";
 
 const BooksDetailsSchema = new mongoose.Schema(
   {
-    author: {
-      type: String,
-      required: true,
-    },
-    bookTitle: {
-      type: String,
-      required: true,
-    },
     chapter: {
       type: Number,
       required: true,
@@ -18,11 +10,9 @@ const BooksDetailsSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    unknownWords: {
-      type: Array,
-    },
-    translation: {
+    content: {
       type: String,
+      required: true,
     },
   },
   {

@@ -1,74 +1,113 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import star from "../../assets/starFilled.png";
-import Favorite from "../Chapters/Favorite";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
-  ChapterList,
+  ChapterListContainer,
   ChapterItem,
   ContentContainer,
-  ChapterContent,
+  ChapterContentContainer,
   ChapterTitle,
   ChapterText,
-  UnknownWordsList,
   UnknownWordsItem,
-  IconsContainer,
+  UnknownWordsList,
 } from "../Chapters/Chapter.style";
+import Words from "../Words/Words";
+import Favorite from "../Chapters/Favorite";
+import Tooltips from "../Tooltips";
+import { newWords } from "./wordTranslation";
+import { fetchChaptersData } from "../../strore/chaptersSlice";
+import ChapterList from "./ChapterList";
+
 const TroisMus = () => {
-  const [content, setContent] = useState([]);
+  const [selectedChapter, setSelectedChapter] = useState(0); // State to keep track of the selected chapter index
+  const [hoveredWord, setHoveredWord] = useState(""); // State to keep track of the hovered word
+  const dispatch = useDispatch();
+  const chapters = useSelector((state) => state.chapters.chapters || []); // Access the chapters data from the Redux store
+  const loading = useSelector((state) => state.chapters.loading); // Loading state from Redux store
+  const error = useSelector((state) => state.chapters.error); // Error state from Redux store
 
   useEffect(() => {
-    getData();
-  }, []);
+    // Fetch chapters data when the component mounts
+    dispatch(fetchChaptersData());
+  }, [dispatch]);
 
-  const getData = async () => {
-    try {
-      const response = await axios.get("http://localhost:5500/books");
-      setContent(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleWordHover = (word) => {
+    // Event handler when a word is hovered
+    setHoveredWord(word);
   };
 
-  const handleStarClick = (wordId) => {
-    setContent((prevContent) => {
-      const updatedContent = [...prevContent];
+  const handleWordLeave = () => {
+    // Event handler when the word hover is left
+    setHoveredWord("");
+  };
 
-      for (const book of updatedContent) {
-        for (const chapter of book.chapters) {
-          for (const word of chapter.unknownWords) {
-            if (word.id === wordId) {
-              word.favorite = !word.favorite;
-              break;
-            }
-          }
-        }
-      }
+  if (loading) {
+    // Display loading state if data is still loading
+    return <div>Loading...</div>;
+  }
 
-      return updatedContent;
+  if (error) {
+    // Display error message if there is an error fetching the data
+    return <div>Error: {error}</div>;
+  }
+
+  const renderChapterText = () => {
+    if (!chapters || chapters.length === 0) {
+      // Check if chapters data is available
+      return null;
+    }
+
+    const words = chapters[selectedChapter].content.split(" "); // Split the content into individual words
+    return words.map((word, index) => {
+      const translation = newWords[word]; // Get the translation for the word from the `newWords` object
+      const isHovered = hoveredWord === word; // Check if the word is currently being hovered
+
+      return (
+        <ChapterText
+          key={index}
+          onMouseEnter={() => handleWordHover(word)}
+          onMouseLeave={handleWordLeave}
+        >
+          {translation && isHovered ? ( // Display the tooltip if the translation exists and the word is hovered
+            <Tooltips content={translation}>{word}</Tooltips>
+          ) : (
+            word // Display the word as is
+          )}{" "}
+        </ChapterText>
+      );
     });
   };
 
   return (
     <Container>
-      {content.map((book) => (
-        <ContentContainer key={book._id}>
-          <ChapterTitle>{book.chapters[0]?.title}</ChapterTitle>
-          <ChapterText>{book.chapters[0]?.content}</ChapterText>
-          <UnknownWordsList>
-            {book.chapters[0]?.unknownWords.map((word) => (
-              <UnknownWordsItem key={word.id}>
-                <span>{word.word} </span>
-                <span>{word.definition}</span>
-                <span>{word.translation}</span>
-                <IconsContainer>
-                  <Favorite />
-                </IconsContainer>
-              </UnknownWordsItem>
-            ))}
-          </UnknownWordsList>
-        </ContentContainer>
-      ))}
+      <ChapterList
+        chapters={chapters}
+        setSelectedChapter={setSelectedChapter} // Pass the function to set the selected chapter index
+        selectedChapter={selectedChapter} // Pass the selected chapter index
+      />
+
+      <ContentContainer>
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          chapters.length > 0 && (
+            <ChapterContentContainer>
+              <ChapterTitle>{chapters[selectedChapter].title}</ChapterTitle>
+              {renderChapterText()}
+              <UnknownWordsList>
+                {chapters[selectedChapter].words.map((word) => (
+                  <UnknownWordsItem key={word._id}>
+                    <li>word{word.word}</li>
+                    <li>definition{word.definition}</li>
+                    <li>translation{word.translation}</li>
+                    <Favorite />
+                  </UnknownWordsItem>
+                ))}
+              </UnknownWordsList>
+            </ChapterContentContainer>
+          )
+        )}
+      </ContentContainer>
     </Container>
   );
 };
