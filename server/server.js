@@ -3,13 +3,16 @@ import connectToDB from "./connect.js";
 import BookDetails from "./modules/BookDetails.js";
 import Words from "./modules/WordsSchema.js";
 import cors from "cors";
+import userRouter from "./Routes/userRoutes.js";
 const MONGODB_URI =
   "mongodb+srv://imikava365:JOANmadu365A@cluster0.qsvjcyr.mongodb.net/books?retryWrites=true&w=majority";
 
 const PORT = 5500;
 
 const app = express();
+app.use(express.json());
 app.use(cors());
+app.use(userRouter);
 app.get("/books", async (req, res) => {
   try {
     const books = await BookDetails.find({});

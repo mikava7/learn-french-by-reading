@@ -1,10 +1,12 @@
 import axios from "axios";
 
-export const fetchBooksData = async () => {
-  try {
-    const response = await axios.get("http://localhost:5500/books");
-    return response.data;
-  } catch (error) {
-    throw new Error("Error fetching books data.");
-  }
-};
+const instance = axios.create({
+  baseURL: "http://localhost:5500",
+});
+
+instance.interceptors.request.use((config) => {
+  config.headers.Authorization = window.localStorage.getItem("token");
+  return config;
+});
+
+export default instance;
