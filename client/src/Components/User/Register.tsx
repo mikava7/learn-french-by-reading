@@ -1,86 +1,88 @@
+// Register.tsx
+
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRegister, selectAuthStatus } from "../../strore/user.ts";
-import { Navigate, useNavigate } from "react-router-dom";
+import { registerUser } from "../../redux/slices/authSlice";
+import {
+  FormContainer,
+  InputField,
+  FormButton,
+  FormContainerApendix,
+  SignLink,
+} from "../../Styles/globalStyles";
 
-const Registration: React.FC = () => {
-  const authStatus = useSelector(selectAuthStatus);
+import userIcon from "../../assets/user-50.png";
+import passwordIcon from "../../assets/password-50.png";
+import emailIcon from "../../assets/email-50.png";
+const Register = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const isSuccess = useSelector((state) => state.auth.isSuccess);
+  const error = useSelector((state) => state.auth.error);
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleRegistrationSubmit = async (event) => {
-    event.preventDefault();
+  const handleRegister = (e) => {
+    e.preventDefault();
 
-    const data = await dispatch(fetchRegister({ email, password }));
+    // Create user data object
+    const userData = {
+      username,
+      password,
+      email,
+    };
 
-    if (data.payload && "token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token);
-    } else {
-      // Otherwise, show an error message
-      alert("Invalid email or password. Please try again.");
-    }
+    // Dispatch the registerUser action
+    dispatch(registerUser(userData));
   };
 
-  if (authStatus) {
-    return <Navigate to="/" />;
-  }
-
   return (
-    <RegistrationContainer>
-      <StyledForms>
-        <form onSubmit={handleRegistrationSubmit}>
-          <h4>create account</h4>
-
+    <FormContainer>
+      <h2>Register</h2>
+      {/* {error && <p>{error}</p>} */}
+      <form onSubmit={handleRegister}>
+        <InputField>
           <input
-            className="field"
-            label="E-Mail"
-            placeholder="Enter email"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <img src={userIcon} alt="userIcon" />
+        </InputField>
+
+        <InputField>
+          <input
             type="email"
+            placeholder="Email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
+            onChange={(e) => setEmail(e.target.value)}
           />
+          <img src={emailIcon} alt="emailIcon" />
+        </InputField>
+        <InputField>
           <input
-            className="field"
-            label="password"
-            placeholder="Enter password"
             type="password"
+            placeholder="Password"
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
+            onChange={(e) => setPassword(e.target.value)}
           />
-
-          <Buttons>
-            <button type="submit">Sign up</button>
-            <button onClick={() => navigate("/login")}>Login</button>
-          </Buttons>
-        </form>
-      </StyledForms>
-    </RegistrationContainer>
+          <img src={passwordIcon} alt="passwordIcon" />
+        </InputField>
+        <FormButton type="submit" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Register"}
+        </FormButton>
+        <FormContainerApendix>
+          {" "}
+          Already Have Account?
+          <SignLink to="/login">login</SignLink>
+        </FormContainerApendix>
+        {isSuccess && <p>Registration successful</p>}
+      </form>
+    </FormContainer>
   );
 };
 
-export default Registration;
-
-const RegistrationContainer = styled.div`
-  display: flex;
-  border: 1px solid greenyellow;
-  width: 100%;
-  height: 100vh;
-  margin: 0 3rem;
-`;
-const StyledForms = styled.div`
-  /* Your styling */
-`;
-
-const PostContainer = styled.div`
-  /* Your styling */
-`;
-
-const Buttons = styled.div`
-  /* Your styling */
-`;
+export default Register;

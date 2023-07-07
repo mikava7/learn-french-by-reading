@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  Container,
+  ChapterContainer,
   ChapterListContainer,
   ChapterItem,
   ContentContainer,
@@ -10,12 +10,12 @@ import {
   ChapterText,
   UnknownWordsItem,
   UnknownWordsList,
-} from "../Chapters/Chapter.style";
+} from "../../Styles/globalStyles";
 import Words from "../Words/Words";
 import Favorite from "../Chapters/Favorite";
 import Tooltips from "../Tooltips";
 import { newWords } from "./wordTranslation";
-import { fetchChaptersData } from "../../strore/chaptersSlice";
+import { fetchChaptersData } from "../../redux/slices/chaptersSlice";
 import ChapterList from "./ChapterList";
 
 const TroisMus = () => {
@@ -23,9 +23,11 @@ const TroisMus = () => {
   const [hoveredWord, setHoveredWord] = useState(""); // State to keep track of the hovered word
   const dispatch = useDispatch();
   const chapters = useSelector((state) => state.chapters.chapters || []); // Access the chapters data from the Redux store
+
+  console.log(chapters);
   const loading = useSelector((state) => state.chapters.loading); // Loading state from Redux store
   const error = useSelector((state) => state.chapters.error); // Error state from Redux store
-
+  console.log({ loading, error, chapters });
   useEffect(() => {
     // Fetch chapters data when the component mounts
     dispatch(fetchChaptersData());
@@ -42,12 +44,10 @@ const TroisMus = () => {
   };
 
   if (loading) {
-    // Display loading state if data is still loading
     return <div>Loading...</div>;
   }
 
   if (error) {
-    // Display error message if there is an error fetching the data
     return <div>Error: {error}</div>;
   }
 
@@ -79,12 +79,14 @@ const TroisMus = () => {
   };
 
   return (
-    <Container>
-      <ChapterList
-        chapters={chapters}
-        setSelectedChapter={setSelectedChapter} // Pass the function to set the selected chapter index
-        selectedChapter={selectedChapter} // Pass the selected chapter index
-      />
+    <ChapterContainer>
+      <ChapterListContainer>
+        <ChapterList
+          chapters={chapters}
+          setSelectedChapter={setSelectedChapter} // Pass the function to set the selected chapter index
+          selectedChapter={selectedChapter} // Pass the selected chapter index
+        />
+      </ChapterListContainer>
 
       <ContentContainer>
         {loading ? (
@@ -97,9 +99,9 @@ const TroisMus = () => {
               <UnknownWordsList>
                 {chapters[selectedChapter].words.map((word) => (
                   <UnknownWordsItem key={word._id}>
-                    <li>word{word.word}</li>
-                    <li>definition{word.definition}</li>
-                    <li>translation{word.translation}</li>
+                    <li>{word.word}</li>
+                    <li>{word.definition}</li>
+
                     <Favorite />
                   </UnknownWordsItem>
                 ))}
@@ -108,7 +110,7 @@ const TroisMus = () => {
           )
         )}
       </ContentContainer>
-    </Container>
+    </ChapterContainer>
   );
 };
 

@@ -3,6 +3,7 @@ import BookDetails from "./modules/BookDetails";
 export const getBooks = async (req, res) => {
   try {
     const books = await BookDetails.find({});
+    console.log("books", books);
     res.status(200).json(books);
   } catch (error) {
     console.log(error);

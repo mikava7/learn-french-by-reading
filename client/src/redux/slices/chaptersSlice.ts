@@ -1,15 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { fetchBooksData } from "../api/api";
-
 export const fetchChaptersData = createAsyncThunk(
   "chapters/fetchChaptersData",
   async () => {
     try {
-      const response = await axios.get("http://localhost:5500/books");
+      const response = await axios.get("http://localhost:5500/books/chapters");
       return response.data;
-      console.log("data", data);
     } catch (error) {
       throw new Error(`Error fetching books data: ${error.message}`);
     }
@@ -46,4 +43,4 @@ const chaptersSlice = createSlice({
   },
 });
 
-export const chapterReducer = chaptersSlice.reducer;
+export default chaptersSlice.reducer;

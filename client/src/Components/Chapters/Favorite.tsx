@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import star from "../../assets/starFilled.png";
-import { StarIcon } from "./Chapter.style";
+import { StarIcon } from "../../Styles/globalStyles";
 const Favorite = () => {
   const [isStarred, setIsStarred] = useState(true);
   const handleFavorite = () => {

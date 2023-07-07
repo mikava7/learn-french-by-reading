@@ -1,60 +1,100 @@
-import React, { useState } from "react";
+// Login.tsx
+
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLogin, selectAuthStatus } from "../../strore/user";
-import { Navigate, useNavigate } from "react-router-dom";
-
-const Login: React.FC = () => {
-  const authStatus = useSelector(selectAuthStatus);
-  const navigate = useNavigate();
+import { loginUser } from "../../redux/slices/authSlice";
+import { useNavigate, Link } from "react-router-dom";
+import {
+  FormContainer,
+  InputField,
+  FormButton,
+  FormContainerApendix,
+  SignLink,
+} from "../../Styles/globalStyles";
+import userIcon from "../../assets/user-50.png";
+import passwordIcon from "../../assets/password-50.png";
+const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoading = useSelector((state) => state.auth.isLoading);
+  const isSuccess = useSelector((state) => state.auth.isSuccess);
+  const error = useSelector((state) => state.auth.error);
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLoginSubmit = async (event) => {
-    event.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    const data = await dispatch(fetchLogin({ email, password }));
+    // Create user data object
+    const userData = {
+      username,
+      password,
+    };
 
-    if (data.payload && "token" in data.payload) {
-      window.localStorage.setItem("token", data.payload.token);
-    } else {
-      alert("Invalid email or password. Please try again.");
+    try {
+      // Dispatch the loginUser action
+      await dispatch(loginUser(userData));
+
+      navigate("/"); // Navigate to the desired page
+    } catch (error) {
+      // Handle error
     }
   };
 
-  if (authStatus) {
-    return <Navigate to="/" />;
-  }
-
   return (
-    <div>
-      <form onSubmit={handleLoginSubmit}>
-        <input
-          className="field"
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
-        <input
-          className="field"
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-        <div>
-          <button type="submit">Login</button>
-          <button onClick={() => navigate("/register")}>Sign up</button>
-        </div>
+    <FormContainer>
+      <h2>Login</h2>
+      {/* {error && <p>{error}</p>} */}
+      <form onSubmit={handleLogin}>
+        <InputField>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />{" "}
+          <label htmlFor=""></label>
+          <img src={userIcon} alt="userIcon" />
+        </InputField>
+        <InputField>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <img src={passwordIcon} alt="passwordIcon" />
+        </InputField>
+        <ForgotPassword>
+          <PasswordLink to="/">Forgot Password</PasswordLink>
+        </ForgotPassword>
+        <FormButton type="submit" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Login"}
+        </FormButton>
+        <FormContainerApendix>
+          {" "}
+          Not a member?
+          <SignLink to="/register"> signup now</SignLink>
+        </FormContainerApendix>
+        {isSuccess && <p>Login successful</p>}
       </form>
-    </div>
+    </FormContainer>
   );
 };
+
+const ForgotPassword = styled.div`
+  text-align: left;
+  margin: 10px 0 10px 5px;
+`;
+const PasswordLink = styled(Link)`
+  font-size: 1rem;
+  color: ${(props) => props.theme.colors.text};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`;
 
 export default Login;

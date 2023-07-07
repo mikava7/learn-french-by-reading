@@ -12,7 +12,7 @@ import {
   UnknownWordsList,
   UnknownWordsItem,
   IconsContainer,
-} from "./Chapter.style";
+} from "../../Styles/globalStyles.ts";
 import Tooltips from "../Tooltips";
 import Favorite from "./Favorite.tsx";
 import Listen from "./Listen.tsx";
@@ -76,44 +76,44 @@ const Chapters: React.FC<ChaptersProps> = ({ troisMous }) => {
     });
   };
 
-  return (
-    <Container>
-      <ChapterList>
-        {chapters &&
-          chapters.map((chapter, index) => (
-            <ChapterItem
-              key={index}
-              onClick={() => handleChapterClick(index)}
-              selected={selectedChapter === index}
-            >
-              Chapter {chapter.chapter}
-            </ChapterItem>
-          ))}
-      </ChapterList>
-      <ContentContainer>
-        {chapters && (
-          <ChapterContent>
-            <ChapterTitle>{chapters[selectedChapter].title}</ChapterTitle>
-            {renderChapterText()}
-            <UnknownWordsList>
-              {chapters[selectedChapter].unknownWords.map((wordObj) => (
-                <UnknownWordsItem key={wordObj.id}>
-                  <span>{wordObj.word} </span>
+  // return (
+  //   <Container>
+  //     <ChapterList>
+  //       {chapters &&
+  //         chapters.map((chapter, index) => (
+  //           <ChapterItem
+  //             key={index}
+  //             onClick={() => handleChapterClick(index)}
+  //             selected={selectedChapter === index}
+  //           >
+  //             Chapter {chapter.chapter}
+  //           </ChapterItem>
+  //         ))}
+  //     </ChapterList>
+  //     <ContentContainer>
+  //       {chapters && (
+  //         <ChapterContent>
+  //           <ChapterTitle>{chapters[selectedChapter].title}</ChapterTitle>
+  //           {renderChapterText()}
+  //           <UnknownWordsList>
+  //             {chapters[selectedChapter].unknownWords.map((wordObj) => (
+  //               <UnknownWordsItem key={wordObj.id}>
+  //                 <span>{wordObj.word} </span>
 
-                  <span>{wordObj.definition}</span>
-                  <IconsContainer>
-                    <Favorite />
-                    <Listen />
-                  </IconsContainer>
-                  {/* <img src={star} alt="star" onClick={handleStarClick} /> */}
-                </UnknownWordsItem>
-              ))}
-            </UnknownWordsList>
-          </ChapterContent>
-        )}
-      </ContentContainer>
-    </Container>
-  );
+  //                 <span>{wordObj.definition}</span>
+  //                 <IconsContainer>
+  //                   <Favorite />
+  //                   <Listen />
+  //                 </IconsContainer>
+  //                 {/* <img src={star} alt="star" onClick={handleStarClick} /> */}
+  //               </UnknownWordsItem>
+  //             ))}
+  //           </UnknownWordsList>
+  //         </ChapterContent>
+  //       )}
+  //     </ContentContainer>
+  //   </Container>
+  // );
 };
 
 export default Chapters;

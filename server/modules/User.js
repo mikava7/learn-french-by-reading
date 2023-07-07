@@ -3,23 +3,33 @@ import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     email: {
       type: String,
       required: true,
       unique: true,
     },
-    passwordHash: {
+    password: {
       type: String,
       required: true,
     },
-    name: String,
-    imageUrl: String,
+    roles: [{ type: String, default: "Employee" }],
+
+    active: {
+      type: Boolean,
+      default: true,
+    },
     favorites: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Favorite",
       },
     ],
+    imageUrl: String,
   },
   {
     timestamps: true,

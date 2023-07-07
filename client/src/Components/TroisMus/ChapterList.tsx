@@ -1,5 +1,5 @@
 import React from "react";
-import { ChapterListContainer, ChapterItem } from "../Chapters/Chapter.style";
+import { ChapterListContainer, ChapterItem } from "../../Styles/globalStyles";
 
 // Define the shape of a chapter object
 interface Chapter {
@@ -26,7 +26,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
   };
 
   return (
-    <ChapterListContainer>
+    <>
       {/* Map over the chapters array and render each chapter item */}
       {chapters.map((chapter, index) => (
         <ChapterItem
@@ -38,7 +38,7 @@ const ChapterList: React.FC<ChapterListProps> = ({
           Chapter {chapter.chapter} - {chapter.title}
         </ChapterItem>
       ))}
-    </ChapterListContainer>
+    </>
   );
 };
 
