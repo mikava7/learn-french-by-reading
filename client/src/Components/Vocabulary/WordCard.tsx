@@ -5,19 +5,20 @@ import Listen from "../Chapters/Listen";
 import Example from "./Example";
 import { StyledButton } from "../../Styles/globalStyles";
 import nextIcon from "../../assets/next-48.png";
-const WordCard = ({ word, translation, onNext }) => {
+const WordCard = ({ french, translation, onNext }) => {
   return (
     <CardContainer>
-      <Word>{word}</Word>
+      <Word>{french}</Word>
       <Translation>
         <span>Translation: </span> {translation}
       </Translation>
+      <MiddlePart>
+        <Favorite />
+        <Listen />
+      </MiddlePart>
       <Icons>
         <Example />
-        <MiddlePart>
-          <Favorite />
-          <Listen />
-        </MiddlePart>
+
         <NextIcon onClick={onNext}>
           <img src={nextIcon} alt="nextIcon" />
         </NextIcon>
@@ -37,6 +38,9 @@ const CardContainer = styled.div`
   flex-direction: column;
   background-color: ${(props) => props.theme.colors.formBackground};
   color: ${(props) => props.theme.colors.text2};
+  &:not(input) {
+    user-select: none;
+  }
 `;
 
 const Word = styled.div`
@@ -78,6 +82,6 @@ const MiddlePart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 export default WordCard;

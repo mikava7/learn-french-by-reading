@@ -1,0 +1,78 @@
+[
+  {
+    "french": [
+      "bonjour",
+      "au revoir",
+      "merci",
+      "oui",
+      "non",
+      "s'il vous plaît",
+      "pardon",
+      "excusez-moi",
+      "aidez-moi",
+      "désolé"
+    ],
+    "georgian": [
+      "გამარჯობა",
+      "ნახვამდის",
+      "მადლობა",
+      "დიახ",
+      "არა",
+      "გთხოვთ",
+      "ბოდიში",
+      "უკაცრავად",
+      "დამეხმარე",
+      "ვწუხვარ"
+    ],
+    "english": [
+      "hello",
+      "goodbye",
+      "thank you",
+      "yes",
+      "no",
+      "please",
+      "sorry",
+      "excuse me",
+      "help me",
+      "sorry"
+    ]
+  },
+  {
+    "french": [
+      "être",
+      "avoir",
+      "faire",
+      "dire",
+      "aller",
+      "pouvoir",
+      "vouloir",
+      "savoir",
+      "venir",
+      "devoir"
+    ],
+    "georgian": [
+      "ყოფნა",
+      "ქონა",
+      "კეთება",
+      "თქმა",
+      "წასვლა",
+      "შეძლება",
+      "ნდომა",
+      "ცოდნა",
+      "მოსვლა",
+      "უნდა"
+    ],
+    "english": [
+      "to be",
+      "to have",
+      "to do",
+      "to say",
+      "to go",
+      "to can",
+      "to want",
+      "to know",
+      "to come",
+      "to must"
+    ]
+  }
+]

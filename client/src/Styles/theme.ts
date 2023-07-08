@@ -3,6 +3,8 @@ export const lightTheme = {
     primeColor: "#595959",
     primeBackground: "#FOEFF",
 
+    secondaryColor: "#BFBFBF",
+
     formBackground: "#E8E8E8",
     formText: "4d4d4d",
     inputBackground: "#bfbfbf",
@@ -24,6 +26,7 @@ export const darkTheme = {
   colors: {
     primeColor: "#FOEFF",
     primeBackground: "#595959",
+    secondaryColor: "#595959",
 
     formBackground: "#4d4d4d",
     formText: "#dde1e7",

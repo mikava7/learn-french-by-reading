@@ -18,7 +18,8 @@ import ThemeToggle from "./Components/ToggleTheme/ToggleTheme";
 import { GlobalStyle } from "./Styles/globalStyles";
 import LessonComponent from "./Components/Vocabulary/LessonComponent";
 import WordQuiz from "./Components/Vocabulary/WordQuiz";
-
+import GrammerWithDialogue from "./Components/Grammer/GrammerWithDialogue";
+import Exercise from "./Components/Grammer/Exercise";
 function App() {
   const [theme, setTheme] = React.useState("light");
   const displayNav = true;
@@ -40,6 +41,23 @@ function App() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+  const dialogue = [
+    { speaker: "A", phrase: "Hello", translation: "გამარჯობა" },
+    { speaker: "B", phrase: "Hi", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
+    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
+    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
+    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
+    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
+    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
+  ];
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -59,6 +77,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/lesson" element={<LessonComponent />} />
           <Route path="/quiz" element={<WordQuiz />} />
+          <Route
+            path="/GrammerWithDialogue"
+            element={<GrammerWithDialogue dialogue={dialogue} />}
+          />
+          <Route path="/exercise" element={<Exercise />} />
 
           <Route path="/trois" element={<TroisMus />} />
           <Route path="/words" element={<Words />} />

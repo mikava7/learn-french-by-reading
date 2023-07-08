@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-background-color: ${(props) => props.theme.colors.primeBackground};
+background-color: ${(props) => props.theme.colors.secondaryColor};
   color: ${(props) => props.theme.colors.primeColor};
     margin: 0;
     padding: 0.1rem;
@@ -55,10 +55,10 @@ background-color: ${(props) => props.theme.colors.primeBackground};
 
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  font-size: 30px;
+  font-size: 1.5rem;
   position: relative;
   transition: 0.8s all linear;
-  padding: 5px 15px;
+  padding: 0.5rem;
   color: ${(props) => props.theme.colors.text};
 
   &:hover {
@@ -83,17 +83,21 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.primeBackground};
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 1.2rem;
-  border: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
+  text-align: center;
+  width: 8rem;
+  background-color: ${(props) => props.theme.colors.text2};
+  color: ${(props) => props.theme.colors.text};
   cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text2};
+  }
 `;
 export const FormContainer = styled.div`
   margin: 0 auto;
   width: 18rem;
-  padding: 2rem 1rem;
+  padding: 0.2rem 1rem;
   background-color: ${(props) => props.theme.colors.formBackground};
   color: ${(props) => props.theme.colors.formText};
   border-radius: 10px;
@@ -156,6 +160,7 @@ export const InputField = styled.div`
       transform: translateY(-50%);
       left: 4rem;
       pointer-events: none;
+      font-size: 1rem;
       color: ${(props) => props.theme.colors.text2};
     }
   }
@@ -227,7 +232,7 @@ export const ToggleImageContainer = styled.div`
   }
 `;
 export const NavBarContainer = styled.nav`
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid red;
   display: flex;
   justify-content: space-between;
@@ -244,11 +249,16 @@ export const ChapterListContainer = styled.ul`
   padding: 0;
   margin: 0;
   overflow-y: auto;
-  height: calc(100vh - 16px);
+  height: calc(100vh - 1rem);
+  min-width: 15rem;
   width: 20%;
   background-color: ${(props) => props.theme.colors.primeColor};
+  &:not(input) {
+    user-select: none;
+  }
 `;
 export const ChapterContainer = styled.div`
+  width: 100%;
   display: flex;
   gap: 20px;
   width: 100%;
@@ -258,7 +268,7 @@ export const ChapterContainer = styled.div`
 
 export const ChapterItem = styled.li<ChapterItemProps>`
   cursor: pointer;
-  width: 90;
+
   margin: 1rem;
   padding: 1rem;
   background-color: ${(props) => props.theme.colors.primeBackground};
@@ -291,6 +301,9 @@ export const ChapterContentContainer = styled.div`
   cursor: pointer;
   overflow-y: auto;
   height: calc(100vh - 16px);
+  &:not(input) {
+    user-select: none;
+  }
 `;
 
 export const ChapterTitle = styled.h2`
@@ -323,7 +336,6 @@ export const UnknownWordsItem = styled.ul`
   color: black;
   display: flex;
   align-items: center;
-
   padding: 1rem;
   border-radius: 12px;
   list-style-type: none;
@@ -332,7 +344,6 @@ export const UnknownWordsItem = styled.ul`
   }
   li:first-child {
     font-size: 2rem;
-
     font-weight: bold;
   }
 
@@ -356,8 +367,8 @@ export const StarIcon = styled.div`
   display: flex;
   align-items: center;
   img {
-    width: 30px;
-    height: 30px;
+    width: 1.6rem;
+    height: 1.6rem;
     cursor: pointer;
     background-color: transparent;
     filter: ${(props) => (props.favorited ? "invert(50%)" : "none")};
@@ -366,8 +377,8 @@ export const StarIcon = styled.div`
 export const ListenIcon = styled.div`
   display: flex;
   img {
-    width: 27px;
-    height: 27px;
+    width: 1.6rem;
+    height: 1.6rem;
     cursor: pointer;
     filter: ${(props) => (props.isActive ? "none" : "invert(50%)")};
     transition: transform 0.3s ease-in-out;
@@ -378,4 +389,42 @@ export const IconsContainer = styled.div`
   display: flex;
   margin-left: auto;
   gap: 1rem;
+`;
+
+export const WordCardCompletionSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  height: 16rem;
+  border-radius: 12px;
+  margin: 1rem auto;
+  padding: 1rem;
+  padding-top: 3rem;
+  align-items: space-between;
+  text-align: center;
+  background-color: ${(props) => props.theme.colors.formBackground};
+  color: ${(props) => props.theme.colors.text};
+  p {
+    font-size: 1.2rem;
+  }
+`;
+export const CompletionSection = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: space-between;
+
+  button {
+    padding: 1rem;
+    text-align: center;
+    width: 8rem;
+    background-color: ${(props) => props.theme.colors.text2};
+    color: ${(props) => props.theme.colors.text};
+    cursor: pointer;
+    &:hover {
+      background-color: ${(props) => props.theme.colors.text};
+      color: ${(props) => props.theme.colors.text2};
+    }
+  }
 `;

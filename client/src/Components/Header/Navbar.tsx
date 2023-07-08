@@ -5,40 +5,9 @@ import UserLinks from "./UserLinks";
 import { StyledButton, StyledLink } from "../../Styles/globalStyles";
 import ThemeToggle from "../../Components/ToggleTheme/ToggleTheme";
 import { NavBarContainer } from "../../Styles/globalStyles";
-/*
- * This is a ready to use component, just import it and plop it into your project as:
- * <Navbar/>
- * You might want to move all the style components into separate files for readability
- * if you plan to do more with it.
- */
+import Localization from "../../localization/Localization";
 
-const MainNav = styled.ul`
-  list-style-type: none;
-  display: ${(props) => props.display};
-  flex-direction: column;
-
-  display: flex !important;
-  flex-direction: row;
-`;
-const NavLi = styled.li`
-  text-align: center;
-  margin: 15px auto;
-`;
-
-const Logo = styled.li`
-  display: inline-block;
-  font-size: 2rem;
-  margin-top: 10px;
-  margin-left: 20px;
-`;
-const NavBarToggle = styled.span`
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 24px;
-`;
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({
   displayNav,
@@ -55,23 +24,23 @@ const Navbar = ({
   const toggleNavBar = () => {
     setNavDisplay((prevDisplay) => (prevDisplay === "none" ? "flex" : "none"));
   };
+  const { t } = useTranslation();
 
   return (
     <NavBarContainer>
-      <Logo href="#">logo</Logo>
+      <Localization />
       <MainNav display={navDisplay}>
-        <NavLi>
-          <StyledLink to="/">Accueil</StyledLink>
-        </NavLi>
-        {/* <NavLi>
-          <StyledLink to="/books">Books</StyledLink>
-        </NavLi> */}
-        <NavLi>
-          <StyledLink to="/trois">Trois Mousquetaires</StyledLink>
-        </NavLi>
-        <NavLi>
-          <StyledLink to="/lesson">Vocabulary lesson</StyledLink>
-        </NavLi>
+        <li>
+          <StyledLink to="/">{t("Accueil")}</StyledLink>
+        </li>
+
+        <li>
+          <StyledLink to="/trois">{t("Trois Mousquetaires")}</StyledLink>
+        </li>
+
+        <li>
+          <StyledLink to="/lesson">{t("Leçons")}</StyledLink>
+        </li>
       </MainNav>
 
       <User>
@@ -95,7 +64,6 @@ Navbar.propTypes = {
 };
 const User = styled.div`
   display: flex;
-
   align-items: center;
   height: 100%;
 
@@ -105,7 +73,19 @@ const User = styled.div`
 
   & > :last-child {
     width: 90%;
-    border: 1px solid red;
   }
 `;
+
+const MainNav = styled.ul`
+  list-style-type: none;
+  display: ${(props) => props.display};
+  flex-direction: column;
+  display: flex !important;
+  flex-direction: row;
+  li {
+    font-size: 1rem;
+    border-right: 2px solid red;
+  }
+`;
+
 export default Navbar;

@@ -72,7 +72,8 @@ const Home = () => {
 
   return (
     <div>
-      <LessonComponent />
+      home
+      {/* <LessonComponent /> */}
       {/* <WordQuiz /> */}
       {/* <TroisMus /> */}
     </div>

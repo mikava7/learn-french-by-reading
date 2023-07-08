@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./slices/authSlice";
 import chapterReducer from "./slices/chaptersSlice";
+import vocabularyReducer from "./slices/vocabularySlice";
 const persistConfig = {
   key: "root",
   storage,
@@ -15,6 +16,7 @@ const store = configureStore({
     persistedReducer: persistedReducer,
     auth: persistedReducer,
     chapters: chapterReducer,
+    vocabulary: vocabularyReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,

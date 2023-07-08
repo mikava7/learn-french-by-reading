@@ -14,7 +14,11 @@ import {
 } from "../../Styles/globalStyles";
 import userIcon from "../../assets/user-50.png";
 import passwordIcon from "../../assets/password-50.png";
+import { useTranslation } from "react-i18next";
+
 const Login = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoading = useSelector((state) => state.auth.isLoading);
@@ -45,13 +49,13 @@ const Login = () => {
 
   return (
     <FormContainer>
-      <h2>Login</h2>
+      <h2>{t("Connexion")}</h2>
       {/* {error && <p>{error}</p>} */}
       <form onSubmit={handleLogin}>
         <InputField>
           <input
             type="text"
-            placeholder="Username"
+            placeholder={t("Pseudonyme")}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />{" "}
@@ -61,22 +65,22 @@ const Login = () => {
         <InputField>
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("Mot de passe")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <img src={passwordIcon} alt="passwordIcon" />
         </InputField>
         <ForgotPassword>
-          <PasswordLink to="/">Forgot Password</PasswordLink>
+          <PasswordLink to="/">{t("Mot de passe oublié?")}</PasswordLink>
         </ForgotPassword>
         <FormButton type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Login"}
+          {isLoading ? `${t("Chargement")}...` : t("Connexion")}
         </FormButton>
         <FormContainerApendix>
           {" "}
-          Not a member?
-          <SignLink to="/register"> signup now</SignLink>
+          {t("pas de compte?")}
+          <SignLink to="/register">{t("Inscrivez-vous")} </SignLink>
         </FormContainerApendix>
         {isSuccess && <p>Login successful</p>}
       </form>

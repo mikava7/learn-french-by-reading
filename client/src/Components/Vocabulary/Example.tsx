@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 const Example = () => {
-  return <ExampleContainer>Example</ExampleContainer>;
+  const { t } = useTranslation();
+  return <ExampleContainer>{t("Example")}</ExampleContainer>;
 };
 
 const ExampleContainer = styled.div`

@@ -6,6 +6,7 @@ import Words from "./modules/WordsSchema.js";
 import userRouter from "./Routes/userRoutes.js";
 import authRouter from "./Routes/authRoutes.js";
 import bookRouter from "./Routes/bookRoutes.js";
+import vocabularyRouter from "./Routes/vocabularyRoutes.js";
 import dotenv from "dotenv";
 import { logger, logEvents } from "./midlleware/logger.js";
 import cors from "cors";
@@ -23,6 +24,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(userRouter);
 app.use(authRouter);
 app.use(bookRouter);
+app.use(vocabularyRouter);
 
 app.get("/words", async (req, res) => {
   try {

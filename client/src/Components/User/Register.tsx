@@ -10,11 +10,14 @@ import {
   FormContainerApendix,
   SignLink,
 } from "../../Styles/globalStyles";
+import { useTranslation } from "react-i18next";
 
 import userIcon from "../../assets/user-50.png";
 import passwordIcon from "../../assets/password-50.png";
 import emailIcon from "../../assets/email-50.png";
 const Register = () => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.auth.isLoading);
   const isSuccess = useSelector((state) => state.auth.isSuccess);
@@ -40,13 +43,13 @@ const Register = () => {
 
   return (
     <FormContainer>
-      <h2>Register</h2>
+      <h2>{t("Inscription")}</h2>
       {/* {error && <p>{error}</p>} */}
       <form onSubmit={handleRegister}>
         <InputField>
           <input
             type="text"
-            placeholder="Username"
+            placeholder={t("Pseudonyme")}
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -56,7 +59,7 @@ const Register = () => {
         <InputField>
           <input
             type="email"
-            placeholder="Email"
+            placeholder={t("E-mail")}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -65,19 +68,18 @@ const Register = () => {
         <InputField>
           <input
             type="password"
-            placeholder="Password"
+            placeholder={t("Mot de passe")}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <img src={passwordIcon} alt="passwordIcon" />
         </InputField>
         <FormButton type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Register"}
+          {isLoading ? `${t("Chargement")}...` : t("Inscription")}
         </FormButton>
         <FormContainerApendix>
-          {" "}
-          Already Have Account?
-          <SignLink to="/login">login</SignLink>
+          {t("Avez-vous déjà un compte?")}
+          <SignLink to="/login">{t("Connexion")}</SignLink>
         </FormContainerApendix>
         {isSuccess && <p>Registration successful</p>}
       </form>
