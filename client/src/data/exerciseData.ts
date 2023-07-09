@@ -12,16 +12,31 @@ export const exerciseData = [
   {
     question: "Il _____ 25 ans.",
     options: ["à", "est"],
-    correctAnswer: "a",
+    correctAnswer: "à",
   },
   {
-    question: "Vous _____ de la chance.",
+    question: "Vous _____ de La chance:",
     options: ["êtes", "avez"],
     correctAnswer: "avez",
+  },
+  {
+    question: "Je _____ en avance.",
+    options: ["suis", "ai"],
+    correctAnswer: "suis",
+  },
+  {
+    question: "Tu _____ en retard",
+    options: ["es", "as"],
+    correctAnswer: "es",
   },
   {
     question: "Ils _____ patients.",
     options: ["ont", "sont"],
     correctAnswer: "sont",
+  },
+  {
+    question: "Vous _____ libres?",
+    options: ["êtes", "avez"],
+    correctAnswer: "êtes",
   },
 ];

@@ -14,7 +14,18 @@ const TooltipContainer = styled.div`
   position: relative;
   display: inline-block;
   cursor: pointer;
+  padding: 1rem;
 
+  margin: 0.4rem;
+  width: 60%;
+  color: rgb(40, 175, 253);
+  &:nth-child(even) {
+    background-color: #ffa7b5;
+  }
+
+  &:nth-child(odd) {
+    background-color: yellow;
+  }
   &:hover {
     .tooltip-content {
       visibility: visible;

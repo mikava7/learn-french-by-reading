@@ -19,7 +19,7 @@ import { GlobalStyle } from "./Styles/globalStyles";
 import LessonComponent from "./Components/Vocabulary/LessonComponent";
 import WordQuiz from "./Components/Vocabulary/WordQuiz";
 import GrammerWithDialogue from "./Components/Grammer/GrammerWithDialogue";
-import Exercise from "./Components/Grammer/Exercise";
+import SentenceBasedExercise from "./Components/Grammer/Sentence-based-exercise";
 function App() {
   const [theme, setTheme] = React.useState("light");
   const displayNav = true;
@@ -41,23 +41,6 @@ function App() {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-  const dialogue = [
-    { speaker: "A", phrase: "Hello", translation: "გამარჯობა" },
-    { speaker: "B", phrase: "Hi", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
-    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
-    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
-    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "How are you?", translation: "გამარჯობა" },
-    { speaker: "B", phrase: "Fine, and you?", translation: "გამარჯობა" },
-    { speaker: "A", phrase: "Me too.", translation: "გამარჯობა" },
-  ];
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -79,9 +62,12 @@ function App() {
           <Route path="/quiz" element={<WordQuiz />} />
           <Route
             path="/GrammerWithDialogue"
-            element={<GrammerWithDialogue dialogue={dialogue} />}
+            element={<GrammerWithDialogue />}
           />
-          <Route path="/exercise" element={<Exercise />} />
+          <Route
+            path="/sentence-based-exercise"
+            element={<SentenceBasedExercise />}
+          />
 
           <Route path="/trois" element={<TroisMus />} />
           <Route path="/words" element={<Words />} />
@@ -97,7 +83,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
-  border-bottom: 1px solid red;
+
   background-color: ${({ theme }) => theme.colors.inputText};
   color: ${({ theme }) => theme.colors.text};
   width: 95%;
