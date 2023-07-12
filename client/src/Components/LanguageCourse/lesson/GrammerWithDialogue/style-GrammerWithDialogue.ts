@@ -1,16 +1,27 @@
-import React from "react";
 import styled from "styled-components";
 
-const Tool = ({ text, translation }) => {
-  return (
-    <TooltipContainer>
-      {text}
-      <TooltipContent>{translation}</TooltipContent>
-    </TooltipContainer>
-  );
-};
+export const DialogueContainer = styled.div`
+  height: 100vh;
+`;
 
-const TooltipContainer = styled.div`
+export const ScrollToBox = styled.div`
+  margin-top: 20px;
+`;
+
+export const BoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.3rem;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  padding-bottom: 6rem;
+  width: 100%;
+  overflow-y: auto;
+`;
+
+export const TooltipContainer = styled.div`
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -33,7 +44,7 @@ const TooltipContainer = styled.div`
   }
 `;
 
-const TooltipContent = styled.span`
+export const TooltipContent = styled.span`
   visibility: hidden;
   background-color: #333;
   color: #fff;
@@ -62,5 +73,3 @@ const TooltipContent = styled.span`
     border-color: #333 transparent transparent transparent;
   }
 `;
-
-export default Tool;

@@ -30,10 +30,15 @@ const Navbar = ({
     <NavBarContainer>
       <Localization />
       <MainNav display={navDisplay}>
-        <li>
+        {/* <li>
           <StyledLink to="/">{t("Accueil")}</StyledLink>
+        </li> */}
+        <li>
+          <StyledLink to="/jaime-et-claire">{t("Jaime et Claire")}</StyledLink>
         </li>
-
+        <li>
+          <StyledLink to="/course">{t("course")}</StyledLink>
+        </li>
         <li>
           <StyledLink to="/trois">{t("Trois Mousquetaires")}</StyledLink>
         </li>

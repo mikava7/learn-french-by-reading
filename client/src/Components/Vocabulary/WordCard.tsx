@@ -5,7 +5,13 @@ import Listen from "../Chapters/Listen";
 import Example from "./Example";
 import { StyledButton } from "../../Styles/globalStyles";
 import nextIcon from "../../assets/next-48.png";
-const WordCard = ({ french, translation, onNext }) => {
+const WordCard = ({
+  french,
+  translation,
+  onNext,
+  nextButton,
+  chapterComplete,
+}) => {
   return (
     <CardContainer>
       <Word>{french}</Word>
@@ -18,11 +24,13 @@ const WordCard = ({ french, translation, onNext }) => {
       </MiddlePart>
       <Icons>
         <Example />
+        {chapterComplete && nextButton}
 
         <NextIcon onClick={onNext}>
           <img src={nextIcon} alt="nextIcon" />
         </NextIcon>
       </Icons>
+      {/* {chapterComplete && nextButton} */}
     </CardContainer>
   );
 };

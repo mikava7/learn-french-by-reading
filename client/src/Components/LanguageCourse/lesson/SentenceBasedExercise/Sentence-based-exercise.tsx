@@ -1,12 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { exerciseData } from "../../data/exerciseData";
-
-const SentenceBasedExercise = () => {
+import { exerciseData } from "../../../../data/exerciseData";
+import {
+  SentenceBasedExerciseContainer,
+  BoxContainer,
+  OptionButton,
+  SubmitButton,
+} from "./style-SentenceBasedExercise";
+const SentenceBasedExercise = ({ handleNext }) => {
+  // State to store the user's answers
   const [answers, setAnswers] = useState(Array(exerciseData.length).fill(""));
+
+  // State to store the score
   const [score, setScore] = useState(0);
+
+  // State to control whether to show the answers or not
   const [showAnswers, setShowAnswers] = useState(false);
 
+  // Function to handle option selection
   const handleOptionSelect = (questionIndex, option) => {
     const updatedAnswers = [...answers];
     updatedAnswers[questionIndex] = option;
@@ -25,10 +35,10 @@ const SentenceBasedExercise = () => {
   };
 
   return (
-    <Container>
+    <SentenceBasedExerciseContainer>
       {" "}
       <h2>Choisissez la bonne réponse.</h2>
-      <SentenceBasedExerciseContainer>
+      <BoxContainer>
         {/* Render each question */}
         {exerciseData.map((question, index) => {
           // Find the index of the underscore in the question
@@ -69,7 +79,7 @@ const SentenceBasedExercise = () => {
                 {/* Render the options within the underscore */}
                 <span style={{ textDecoration: "underline" }}>
                   {question.options.map((option, optionIndex) => (
-                    <Button
+                    <OptionButton
                       key={optionIndex}
                       onClick={() => handleOptionSelect(index, option)}
                       backgroundColor={
@@ -84,7 +94,7 @@ const SentenceBasedExercise = () => {
                       disabled={answers[index] !== ""}
                     >
                       {option}
-                    </Button>
+                    </OptionButton>
                   ))}
                 </span>
                 {/* Render the text after the underscore */}
@@ -93,7 +103,7 @@ const SentenceBasedExercise = () => {
             </div>
           );
         })}
-      </SentenceBasedExerciseContainer>
+      </BoxContainer>
       {/* Submit button */}
       <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
       {/* Display score and answers after submission */}
@@ -102,70 +112,8 @@ const SentenceBasedExercise = () => {
           <p>Score: {score}</p>
         </div>
       )}
-    </Container>
+    </SentenceBasedExerciseContainer>
   );
 };
-const Container = styled.section`
-  display: flex;
-  flex-direction: column;
-  h2 {
-    text-align: center; /* Center align the h2 element */
-  }
-`;
-const SentenceBasedExerciseContainer = styled.div`
-  border: 2px solid rgb(219, 255, 161);
-
-  border-radius: 6px;
-  padding: 2rem;
-  padding-left: 3rem;
-
-  display: grid;
-  grid-template-columns: 45% 45%;
-
-  gap: 1rem 2rem;
-  background-color: rgb(191, 243, 107);
-
-  div {
-    padding: 0.5rem;
-    margin-bottom: 0.4rem;
-
-    position: relative;
-    border-radius: 12px;
-    background-color: rgb(219, 255, 161);
-    /* border: 2px solid grey; */
-  }
-`;
-
-const Button = styled.button`
-  background-color: ${(props) => props.backgroundColor};
-  border-radius: 8px;
-  font-size: 1rem;
-  padding: 4px 6px;
-  cursor: pointer;
-  gap: 1rem;
-  color: black;
-  &:first-child {
-    margin-right: 0.6rem;
-  }
-  &:hover {
-    transform: scale(1.2);
-    background-color: rgb(253, 253, 40);
-    color: rgb(40, 175, 253);
-  }
-`;
-const SubmitButton = styled.button`
-  margin-top: 1rem;
-  margin-left: auto; /* Add this line */
-  padding: 1rem;
-  font-size: 1.1rem;
-  width: 8rem;
-  background-color: rgb(253, 253, 40);
-  color: ${(props) => props.theme.colors.text};
-  cursor: pointer;
-  &:hover {
-    background-color: rgb(107, 253, 40);
-    color: ${(props) => props.theme.colors.text2};
-  }
-`;
 
 export default SentenceBasedExercise;

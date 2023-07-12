@@ -18,8 +18,14 @@ import ThemeToggle from "./Components/ToggleTheme/ToggleTheme";
 import { GlobalStyle } from "./Styles/globalStyles";
 import LessonComponent from "./Components/Vocabulary/LessonComponent";
 import WordQuiz from "./Components/Vocabulary/WordQuiz";
-import GrammerWithDialogue from "./Components/Grammer/GrammerWithDialogue";
-import SentenceBasedExercise from "./Components/Grammer/Sentence-based-exercise";
+import GrammerWithDialogue from "./Components/LanguageCourse/lesson/GrammerWithDialogue/GrammerWithDialogue";
+import SentenceBasedExercise from "./Components/LanguageCourse/lesson/SentenceBasedExercise/Sentence-based-exercise";
+import VerbConjugation from "./Components/LanguageCourse/lesson/VerbConjugation/VerbConjugation";
+import Course from "./Components/LanguageCourse/Course/Course";
+import Vocabulary from "./Components/LanguageCourse/lesson/Vocabulary/Voacbulary";
+import Dialogues from "./elementary/Dialogue/Dialogues";
+import JaimeEtClaire from "./elementary/JaimeEtClaire";
+import SentenceBuilder from "./elementary/Dialogue/SentenceBuilder";
 function App() {
   const [theme, setTheme] = React.useState("light");
   const displayNav = true;
@@ -59,7 +65,17 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/lesson" element={<LessonComponent />} />
+          <Route path="/course" element={<Course />} />
+          <Route path="/jaime-et-claire" element={<JaimeEtClaire />} />
+          <Route
+            path="/jaime-et-claire/sentence-builder"
+            element={<SentenceBuilder />}
+          />
+
           <Route path="/quiz" element={<WordQuiz />} />
+          <Route path="/vocabulary" element={<Vocabulary />} />
+          <Route path="/dialogues" element={<Dialogues />} />
+
           <Route
             path="/GrammerWithDialogue"
             element={<GrammerWithDialogue />}
@@ -68,6 +84,7 @@ function App() {
             path="/sentence-based-exercise"
             element={<SentenceBasedExercise />}
           />
+          <Route path="/VerbConjugation" element={<VerbConjugation />} />
 
           <Route path="/trois" element={<TroisMus />} />
           <Route path="/words" element={<Words />} />

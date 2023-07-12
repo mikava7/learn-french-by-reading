@@ -1,0 +1,33 @@
+[
+  {
+    "lesson": 1,
+    "lesson title": "Rencontres",
+    "dialogue": [
+      {
+        "speaker": "jamie",
+        "message": "Bonjour.Je m’appelle Francois"
+      },
+      {
+        "speaker": "Claire",
+        "message": "Bonjour jamie"
+      },
+
+      {
+        "speaker": "jamie",
+        "message": "Et toi, tu t'appelles comment?"
+      },
+      {
+        "speaker": "Claire",
+        "message": "Je m’appelle Claire."
+      },
+      {
+        "speaker": "jamie",
+        "message": "enchanté Claire"
+      },
+      {
+        "speaker": "Claire",
+        "message": "enchanté."
+      }
+    ]
+  }
+]

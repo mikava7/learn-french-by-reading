@@ -7,6 +7,7 @@ import userRouter from "./Routes/userRoutes.js";
 import authRouter from "./Routes/authRoutes.js";
 import bookRouter from "./Routes/bookRoutes.js";
 import vocabularyRouter from "./Routes/vocabularyRoutes.js";
+import courseRouter from "./Routes/courseRoutes.js";
 import dotenv from "dotenv";
 import { logger, logEvents } from "./midlleware/logger.js";
 import cors from "cors";
@@ -25,6 +26,7 @@ app.use(userRouter);
 app.use(authRouter);
 app.use(bookRouter);
 app.use(vocabularyRouter);
+app.use(courseRouter);
 
 app.get("/words", async (req, res) => {
   try {

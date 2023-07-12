@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 export const getAllVocabulary = createAsyncThunk(
   "vocabulary/getAllVocabulary",
-  async () => {
+  async (lessonNumber) => {
     try {
       const response = await axios.get(
-        "http://localhost:5500/lesson/vocabulary"
+        `http://localhost:5500/course/vocabulary/${lessonNumber}`
       );
       return response.data;
     } catch (error) {

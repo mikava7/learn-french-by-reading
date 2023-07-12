@@ -1,0 +1,783 @@
+[
+  {
+    "lesson": 1,
+    "lesson title": "Rencontres",
+    "objective": [
+      "saluer",
+      "demander et dire le nom et le prenom, l'âge, les coordonnees, la profesion"
+    ],
+    "dialogue": [
+      {
+        "dialogue_id": 1,
+        "dialogue": [
+          {
+            "speaker": "jamie",
+            "message": "Bonjour.Je m’appelle Francois"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Bonjour jamie"
+          },
+
+          {
+            "speaker": "jamie",
+            "message": "Et toi, tu t'appelles comment?"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Je m’appelle Claire."
+          },
+          {
+            "speaker": "jamie",
+            "message": "enchanté Claire"
+          },
+          {
+            "speaker": "Claire",
+            "message": "enchanté."
+          }
+        ]
+      },
+
+      {
+        "dialogue_id": 2,
+        "dialogue": [
+          {
+            "speaker": "Gérard",
+            "message": "Bonjour, madame."
+          },
+          {
+            "speaker": "Corinne",
+            "message": "Bonjour, monsieur."
+          },
+          {
+            "speaker": "Gérard",
+            "message": "Excusez-moi. Vous vous appelez comment?"
+          },
+          {
+            "speaker": "Corinne",
+            "message": "Corinne Laporte. Et vous ?"
+          },
+          {
+            "speaker": "Gérard",
+            "message": "Gérard Leroy.L.E.R.O.Y"
+          }
+        ]
+      },
+      {
+        "dialogue_id": 3,
+        "dialogue": [
+          {
+            "speaker": "Héléne",
+            "message": "Oh, bonjour, Claire. "
+          },
+          {
+            "speaker": "Claire",
+            "message": "Bonjour, Héléne. Ca va bien ?"
+          },
+          {
+            "speaker": "Héléne",
+            "message": "Oui, moi, ¢a va. Et toi ?"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Moi aussi. Merci, au revoir!"
+          },
+          {
+            "speaker": "Héléne",
+            "message": "au revoir!"
+          }
+        ]
+      },
+      {
+        "dialogue_id": 4,
+        "dialogue": [
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Bonjour, madame Leroy."
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Bonjour, madame Rousseau.Ca va bien ?"
+          },
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Oui, ca va bien. Et vous ?"
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Moi aussi, ¢a va. Merci."
+          },
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Au revoir. Bonne journée !"
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Au revoir."
+          }
+        ]
+      }
+    ],
+    "vocabulary": {
+      "french": [
+        "bonjour",
+        "au revoir",
+        "merci",
+        "Tu t'appelles comment?",
+        "Vous vous appelez comment?",
+        "Je m’appelle",
+        "je suis",
+        "Excusez-moi",
+        "bonne journée"
+      ],
+      "georgian": [
+        "გამარჯობა",
+        "ნახვამდის",
+        "მადლობა",
+        "რა გქვია",
+        "რა გქვიათ",
+        "Მე მქვია",
+        "მე ვარ",
+        "უკაცრავად",
+        "Კარგ დღეს გისურვებთ"
+      ],
+      "english": [
+        "hello/good day",
+        "goodbye",
+        "thank you",
+        "What's your name?",
+        "What is your name?",
+        "My name is",
+        "I am",
+        "excuse me",
+        "Have a good day"
+      ]
+    },
+
+    "verbsConjugations": [
+      {
+        "verb": "etre",
+        "french": [
+          "Je suis",
+          "Tu es",
+          "Il/elle est",
+          "Nous sommes",
+          "Vous êtes",
+          "Ils/elles sont"
+        ],
+        "georgian": [
+          "მე ვარ",
+          "შენ ხარ",
+          "ის არის",
+          "ჩვენ ვართ",
+          "თქვენ ხართ",
+          "ისინი არიან"
+        ]
+      },
+      {
+        "verb": "avoir",
+        "french": [
+          "J'ai",
+          "Tu as",
+          "Il/elle a",
+          "Nous avons",
+          "Vous avez",
+          "Ils/elles ont"
+        ],
+        "georgian": [
+          "მე მაქვს",
+          "შენ გაქვს",
+          "მას აქვს",
+          "ჩვენ გვაქვს",
+          "თქვენ გაქვთ",
+          "მათ აქვთ"
+        ]
+      }
+    ],
+    "verbExercise": [
+      {
+        "question": "Nous _____ un jardin.",
+        "options": ["avons", "sommes"],
+        "correctAnswer": "avons"
+      },
+      {
+        "question": "Elle _____ polonaise.",
+        "options": ["à", "est"],
+        "correctAnswer": "est"
+      },
+      {
+        "question": "Il _____ 25 ans.",
+        "options": ["à", "est"],
+        "correctAnswer": "à"
+      },
+      {
+        "question": "Vous _____ de La chance:",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "avez"
+      },
+      {
+        "question": "Je _____ en avance.",
+        "options": ["suis", "ai"],
+        "correctAnswer": "suis"
+      },
+      {
+        "question": "Tu _____ en retard",
+        "options": ["es", "as"],
+        "correctAnswer": "es"
+      },
+      {
+        "question": "Ils _____ patients.",
+        "options": ["ont", "sont"],
+        "correctAnswer": "sont"
+      },
+      {
+        "question": "Vous _____ libres?",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "êtes"
+      }
+    ]
+  },
+  {
+    "lesson": 1,
+    "lesson title": "Rencontres",
+    "objective": [
+      "saluer",
+      "demander et dire le nom et le prenom, l'âge, les coordonnees, la profesion"
+    ],
+    "dialogue": {
+      "title": "DANS UNE CITÉ UNIVERSITAIRE",
+      "content": [
+        {
+          "speaker": "Louise",
+          "phrase": "Bonjour, est-ce que Benoît est là ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Non, il n'est pas là. Il est à l’infirmerie, je crois.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Ah bon ? Il est malade ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Oui, il est malade, fatigué, déprimé.…",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Qu'est-ce qu'il a ? Il a des problèmes ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Ah... Des problèmes avec les femmes...",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Avec les femmes ? Alors, il est amoureux !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Benoît, amoureux? Peut-être.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Ah, les hommes. Ils sont vraiment compliqués ! Ils ont toujours des problèmes",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Mais pas du tout ! Les hommes ne sont pas compliqués !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Vraiment ? Bon, où sont Raphaël et Bertrand ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Je ne sais pas. Ils ne sont pas là.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "",
+          "phrase": "(Quelques minutes plus tard.)",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Bertrand et Raphaël",
+          "phrase": "Je suis désolé, on est en retard !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "C'est normal, vous êtes toujours en retard !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Raphaël",
+          "phrase": "Et toi, bien sûr, tu es toujours à l'heure...",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Moi, je suis toujours en avance quand j'ai un rendez-vous. Bon... Vous avez les gâteaux, pour la fête ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Bertrand",
+          "phrase": "Oui, voilà... On a aussi le vin et les jus de fruits.",
+          "translation": "გამარჯობა"
+        }
+      ]
+    },
+
+    "vocabulary": {
+      "french": [
+        "bonjour",
+        "au revoir",
+        "il n'est pas là",
+        "infirmerie",
+        "malade",
+        "fatigué",
+        "amoureux",
+        "Peut-être.",
+        "aidez-moi",
+        "désolé"
+      ],
+      "georgian": [
+        "გამარჯობა",
+        "ნახვამდის",
+        "ის იქ არ არის.",
+        "სამკურნალო დაწესებულება",
+        "ავად ყოფნა",
+        "დაღლილი",
+        "დეპრესიაში მყოფი",
+        "შეყვარებული",
+        "შესაძლოა",
+        "ვწუხვარ"
+      ],
+      "english": [
+        "hello/good day",
+        "goodbye",
+        "he is not there.",
+        "Infirmary",
+        "Sick",
+        "tired",
+        "Depressed",
+        "in love",
+        "maybe ",
+        "sorry"
+      ]
+    },
+    "verbsConjugations": [
+      {
+        "verb": "etre",
+        "french": [
+          "Je suis",
+          "Tu es",
+          "Il/elle est",
+          "Nous sommes",
+          "Vous êtes",
+          "Ils/elles sont"
+        ],
+        "georgian": [
+          "მე ვარ",
+          "შენ ხარ",
+          "ის არის",
+          "ჩვენ ვართ",
+          "თქვენ ხართ",
+          "ისინი არიან"
+        ]
+      },
+      {
+        "verb": "avoir",
+        "french": [
+          "J'ai",
+          "Tu as",
+          "Il/elle a",
+          "Nous avons",
+          "Vous avez",
+          "Ils/elles ont"
+        ],
+        "georgian": [
+          "მე მაქვს",
+          "შენ გაქვს",
+          "მას აქვს",
+          "ჩვენ გვაქვს",
+          "თქვენ გაქვთ",
+          "მათ აქვთ"
+        ]
+      }
+    ],
+    "verbExercise": [
+      {
+        "question": "Nous _____ un jardin.",
+        "options": ["avons", "sommes"],
+        "correctAnswer": "avons"
+      },
+      {
+        "question": "Elle _____ polonaise.",
+        "options": ["à", "est"],
+        "correctAnswer": "est"
+      },
+      {
+        "question": "Il _____ 25 ans.",
+        "options": ["à", "est"],
+        "correctAnswer": "à"
+      },
+      {
+        "question": "Vous _____ de La chance:",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "avez"
+      },
+      {
+        "question": "Je _____ en avance.",
+        "options": ["suis", "ai"],
+        "correctAnswer": "suis"
+      },
+      {
+        "question": "Tu _____ en retard",
+        "options": ["es", "as"],
+        "correctAnswer": "es"
+      },
+      {
+        "question": "Ils _____ patients.",
+        "options": ["ont", "sont"],
+        "correctAnswer": "sont"
+      },
+      {
+        "question": "Vous _____ libres?",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "êtes"
+      }
+    ]
+  },
+  {
+    "lesson": 2,
+    "dialogue": {
+      "title": "DANS UNE CITÉ UNIVERSITAIRE",
+      "content": [
+        {
+          "speaker": "Louise",
+          "phrase": "Bonjour, est-ce que Benoît est là ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Non, il n'est pas là. Il est à l’infirmerie, je crois.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Ah bon ? Il est malade ?",
+          "translation": "გამარჯობა"
+        },
+
+        {
+          "speaker": "Louise",
+          "phrase": "Avec les femmes ? Alors, il est amoureux !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Benoît, amoureux? Peut-être.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Ah, les hommes. Ils sont vraiment compliqués ! Ils ont toujours des problèmes",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Mais pas du tout ! Les hommes ne sont pas compliqués !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Vraiment ? Bon, où sont Raphaël et Bertrand ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Pierre",
+          "phrase": "Je ne sais pas. Ils ne sont pas là.",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "",
+          "phrase": "(Quelques minutes plus tard.)",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Bertrand et Raphaël",
+          "phrase": "Je suis désolé, on est en retard !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "C'est normal, vous êtes toujours en retard !",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Raphaël",
+          "phrase": "Et toi, bien sûr, tu es toujours à l'heure...",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Louise",
+          "phrase": "Moi, je suis toujours en avance quand j'ai un rendez-vous. Bon... Vous avez les gâteaux, pour la fête ?",
+          "translation": "გამარჯობა"
+        },
+        {
+          "speaker": "Bertrand",
+          "phrase": "Oui, voilà... On a aussi le vin et les jus de fruits.",
+          "translation": "გამარჯობა"
+        }
+      ]
+    },
+
+    "vocabulary": {
+      "french": [
+        "bonsasdfadfsadfjour",
+        "au revoir",
+        "measdfsarci",
+        "oui",
+        "ndfon",
+        "s'il vous plaît",
+        "pardon",
+        "excusez-moi",
+        "aidez-moi",
+        "désolé"
+      ],
+      "georgian": [
+        "გამარჯობა",
+        "ნახვამდის",
+        "მადლობა",
+        "დიახ",
+        "არა",
+        "გთხasოვთ",
+        "ბოდიში",
+        "უკაცრავად",
+        "დამეხმარე",
+        "ვწუხვარ"
+      ],
+      "english": [
+        "hello/good day",
+        "goodbye",
+        "thank you",
+        "yes",
+        "no",
+        "plesfasfasfase",
+        "sorry",
+        "excuse me",
+        "help me",
+        "sorry"
+      ]
+    },
+    "verbsConjugations": [
+      {
+        "verb": "asas",
+        "french": [
+          "Je sdasd",
+          "Tu eaasfasfasdas",
+          "Il/esdsdasdlle est",
+          "Nouasdasds sommes",
+          "Vouasdass êtes",
+          "Ildasdass/elles sont"
+        ],
+        "georgian": [
+          "მე ვარ",
+          "შეasdasdaნ ხარ",
+          "ის არის",
+          "ჩვენ ვართ",
+          "თქვენ ხართ",
+          "ისინი არიან"
+        ]
+      },
+      {
+        "verb": "avoir",
+        "french": [
+          "J'ai",
+          "Tu as",
+          "Il/elle a",
+          "Nous avons",
+          "Vous avez",
+          "Ils/elles ont"
+        ],
+        "georgian": [
+          "მე მაქვს",
+          "შენ გაქვს",
+          "მას აქვს",
+          "ჩვენ გვაქვს",
+          "თქვენ გაქვთ",
+          "მათ აქვთ"
+        ]
+      }
+    ],
+    "verbExercise": [
+      {
+        "question": "Nous _____ un jardin.",
+        "options": ["avons", "sommes"],
+        "correctAnswer": "avons"
+      },
+      {
+        "question": "Elle _____ polonaise.",
+        "options": ["à", "est"],
+        "correctAnswer": "est"
+      },
+      {
+        "question": "Il _____ 25 ans.",
+        "options": ["à", "est"],
+        "correctAnswer": "à"
+      },
+      {
+        "question": "Vous _____ de La chance:",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "avez"
+      },
+      {
+        "question": "Je _____ en avance.",
+        "options": ["suis", "ai"],
+        "correctAnswer": "suis"
+      },
+      {
+        "question": "Tu _____ en retard",
+        "options": ["es", "as"],
+        "correctAnswer": "es"
+      },
+      {
+        "question": "Ils _____ patients.",
+        "options": ["ont", "sont"],
+        "correctAnswer": "sont"
+      },
+      {
+        "question": "Vous _____ libres?",
+        "options": ["êtes", "avez"],
+        "correctAnswer": "êtes"
+      }
+    ]
+  },
+  {
+    "dialogue": [
+      {
+        "dialogue_id": 1,
+        "dialogue": [
+          {
+            "speaker": "jamie",
+            "message": "Bonjour.Je m’appelle Francois"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Bonjour jamie"
+          },
+
+          {
+            "speaker": "jamie",
+            "message": "Et toi, tu t'appelles comment?"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Je m’appelle Claire."
+          },
+          {
+            "speaker": "jamie",
+            "message": "enchanté Claire"
+          },
+          {
+            "speaker": "Claire",
+            "message": "enchanté."
+          }
+        ]
+      },
+
+      {
+        "dialogue_id": 2,
+        "dialogue": [
+          {
+            "speaker": "Gérard",
+            "message": "Bonjour, madame."
+          },
+          {
+            "speaker": "Corinne",
+            "message": "Bonjour, monsieur."
+          },
+          {
+            "speaker": "Gérard",
+            "message": "Excusez-moi. Vous vous appelez comment?"
+          },
+          {
+            "speaker": "Corinne",
+            "message": "Corinne Laporte. Et vous ?"
+          },
+          {
+            "speaker": "Gérard",
+            "message": "Gérard Leroy.L.E.R.O.Y"
+          }
+        ]
+      },
+      {
+        "dialogue_id": 3,
+        "dialogue": [
+          {
+            "speaker": "Héléne",
+            "message": "Oh, bonjour, Claire. "
+          },
+          {
+            "speaker": "Claire",
+            "message": "Bonjour, Héléne. Ca va bien ?"
+          },
+          {
+            "speaker": "Héléne",
+            "message": "Oui, moi, ¢a va. Et toi ?"
+          },
+          {
+            "speaker": "Claire",
+            "message": "Moi aussi. Merci, au revoir!"
+          },
+          {
+            "speaker": "Héléne",
+            "message": "au revoir!"
+          }
+        ]
+      },
+      {
+        "dialogue_id": 4,
+        "dialogue": [
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Bonjour, madame Leroy."
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Bonjour, madame Rousseau.Ca va bien ?"
+          },
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Oui, ca va bien. Et vous ?"
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Moi aussi, ¢a va. Merci."
+          },
+          {
+            "speaker": "Mme Rousseau",
+            "message": "Au revoir. Bonne journée !"
+          },
+          {
+            "speaker": "Mme Leroy",
+            "message": "Au revoir."
+          }
+        ]
+      }
+    ]
+  }
+]
