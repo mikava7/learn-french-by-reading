@@ -1,33 +1,48 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Dialogues from "./Dialogue/Dialogues";
 import NewPhrases from "./NewPhrases";
-const JaimeEtClaire = () => {
-  const [score, setScore] = useState(0);
+import DialogueExercise from "./Dialogue/DialogueExercise";
+import SentenceBuilder from "./Dialogue/SentenceBuilder";
+import { Continue, LessonContainer } from "./style-elementaryComponant";
 
-  const [lessonsCurrentIndex, setLessonsCurrentIndex] = useState(1);
+const JaimeEtClaire = () => {
+  const [lessonsCurrentIndex, setLessonsCurrentIndex] = useState(0);
+  const [currentComponent, setCurrentCompoonent] = useState(0);
+
   const handleNext = () => {
-    setLessonsCurrentIndex((prevIndex) => prevIndex + 1);
+    setCurrentCompoonent((prevIndex) => {
+      if (prevIndex === components.length - 1) {
+        setLessonsCurrentIndex((prevIndex) => prevIndex + 1); // Increase execution count
+        return 0; // Reset to the first component
+      } else {
+        return prevIndex + 1;
+      }
+    });
   };
 
+  const components = [
+    <Dialogues
+      lessonsCurrentIndex={lessonsCurrentIndex}
+      Continue={<Continue onClick={handleNext}>Continue</Continue>}
+    />,
+    <DialogueExercise
+      lessonsCurrentIndex={lessonsCurrentIndex}
+      Continue={<Continue onClick={handleNext}>Continue</Continue>}
+    />,
+    <SentenceBuilder
+      lessonsCurrentIndex={lessonsCurrentIndex}
+      Continue={<Continue onClick={handleNext}>Continue</Continue>}
+    />,
+    <NewPhrases
+      lessonsCurrentIndex={lessonsCurrentIndex}
+      Continue={<Continue onClick={handleNext}>Continue</Continue>}
+    />,
+  ];
   return (
     <div>
-      <Dialogues
-        score={score}
-        setScore={setScore}
-        nextButton={<NextButton onClick={handleNext}>Next</NextButton>}
-      />
-      <NewPhrases />
+      <LessonContainer>{components[currentComponent]}</LessonContainer>
     </div>
   );
 };
-const NextButton = styled.button`
-  width: 18rem;
-  padding: 1rem 2rem;
-  font-size: 1.8rem;
-  border-radius: 1rem;
-  background-color: #d3f125;
-  margin: 0 auto;
-  cursor: pointer;
-`;
+
 export default JaimeEtClaire;

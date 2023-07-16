@@ -10,30 +10,50 @@ import jaimeAudio3 from "../../audio/drive-download-20230711T213315Z-001/enchant
 import claireAudio1 from "../../audio/drive-download-20230711T213315Z-001/bonjour jaime claire.mp3";
 import claireAudio2 from "../../audio/drive-download-20230711T213315Z-001/je mappelle Claire claire.mp3";
 import claireAudio3 from "../../audio/drive-download-20230711T213315Z-001/encante Claire.mp3";
+import {
+  DialogueSection,
+  MessageContainer,
+  JaimeMessage,
+  ClaireMessage,
+  SpeakerImage,
+  MessageContent,
+  MessageText,
+  ContinueButtonWrapper,
+  TranslationText,
+} from "../style-elementaryComponant";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchDialoguesForLesson,
+  fetchAudioFiles,
+} from "../../redux/slices/elementary/dialogueSlice";
 
-const Dialogues = ({ nextButton, score, setScore }) => {
+const Dialogues = ({ Continue, lessonsCurrentIndex }) => {
+  const dispatch = useDispatch();
+  const dialogue = useSelector((state) => state.dialogues.dialogues) || [];
+  const audioFiles = useSelector((state) => state.dialogues.audioFiles) || [];
+  console.log("audioFiles", audioFiles);
+  console.log("dialogue", dialogue);
+  const s3BucketUrl =
+    "https://francophonixaudio.s3.eu-north-1.amazonaws.com/Audio-20230715T065055Z-001/";
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
   const dialogueRef = useRef(null);
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const dialogue = elementaryData[0].dialogue;
-  const audioList = [
-    jaimeAudio1,
-    claireAudio1,
-    jaimeAudio2,
-    claireAudio2,
-    jaimeAudio3,
-    claireAudio3,
-  ];
+  const audioLists = audioFiles.map((audioFile) => audioFile);
+  console.log("audioListsssssssss", audioLists);
 
   const handlePlayAudio = () => {
-    const audioFile = audioList[currentAudioIndex];
-    const buttonAudio = new Audio(audioFile);
+    const audioFileName = audioLists[currentAudioIndex];
+    const audioFileUrl = `${s3BucketUrl}${audioFileName}`;
+    const buttonAudio = new Audio(audioFileUrl);
     buttonAudio.play();
     setCurrentAudioIndex(currentAudioIndex + 1);
   };
-
+  useEffect(() => {
+    handlePlayAudio(s3BucketUrl);
+  }, []);
   const playSound = (index) => {
     if (!isDisabled) {
       setIsDisabled(true);
@@ -48,6 +68,10 @@ const Dialogues = ({ nextButton, score, setScore }) => {
       });
     }
   };
+  useEffect(() => {
+    dispatch(fetchDialoguesForLesson(lessonsCurrentIndex));
+    dispatch(fetchAudioFiles());
+  }, []);
 
   useEffect(() => {
     handlePlayAudio();
@@ -76,7 +100,7 @@ const Dialogues = ({ nextButton, score, setScore }) => {
     handlePlayAudio();
   };
 
-  const isLastMessage = currentIndex >= dialogue.length;
+  const isLastMessage = currentIndex >= dialogue.length - 1;
 
   return (
     <DialogueSection onClick={handleMessage} ref={dialogueRef}>
@@ -90,21 +114,21 @@ const Dialogues = ({ nextButton, score, setScore }) => {
                   : undefined
               }
               key={index}
-              speaker={phrase.speaker}
+              index={index}
             >
-              {phrase.speaker === "jamie" ? (
+              {index % 2 === 0 ? (
                 <JaimeMessage>
                   <SpeakerImage src={Jaime} alt="Jaime" />
                   <MessageContent>
                     <MessageText>{phrase.message}</MessageText>
-                    <Translation>{phrase.translation}</Translation>
+                    <TranslationText>{phrase.translation}</TranslationText>
                   </MessageContent>
                 </JaimeMessage>
               ) : (
                 <ClaireMessage>
                   <MessageContent>
                     <MessageText>{phrase.message}</MessageText>
-                    <Translation>{phrase.translation}</Translation>
+                    <TranslationText>{phrase.translation}</TranslationText>
                   </MessageContent>
                   <SpeakerImage src={Claire} alt="Claire" />
                 </ClaireMessage>
@@ -113,92 +137,9 @@ const Dialogues = ({ nextButton, score, setScore }) => {
           );
         })}
       </ul>
-      <Continue>Continue</Continue>{" "}
-      <DialogueExercise setScore={setScore} score={score} />
+      <ContinueButtonWrapper>{isLastMessage && Continue}</ContinueButtonWrapper>
     </DialogueSection>
   );
 };
-
-const MessageContainer = styled.div`
-  display: flex;
-  justify-content: ${(props) =>
-    props.speaker === "jamie" ? "flex-start" : "flex-end"};
-  align-items: center;
-`;
-
-const DialogueSection = styled.section`
-  display: flex;
-  width: 100vw;
-
-  justify-content: space-between; /* Add this */
-  min-height: 80vh; /* Change height to min-height */
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  margin: 0;
-  border: 2px solid grey;
-  border-bottom: none;
-  background-color: white;
-`;
-
-const JaimeMessage = styled.li`
-  display: flex;
-  background-color: #3e3efa;
-  color: white;
-  padding: 1rem;
-  border-radius: 30px 0 25px 0;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const ClaireMessage = styled.li`
-  display: flex;
-  color: white;
-  background-color: #4daffa;
-  padding: 1rem;
-  margin-bottom: 1rem;
-
-  border-radius: 0 30px 0 25px;
-  margin-right: 3rem;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const SpeakerImage = styled.img`
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  margin-right: 10px;
-  margin-left: 10px;
-`;
-
-const MessageContent = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const MessageText = styled.span`
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-`;
-
-const Translation = styled.span`
-  font-size: 1rem;
-  font-weight: 400;
-`;
-export const Continue = styled.span`
-  background-color: #70ff41;
-  color: black;
-  width: 20rem;
-  font-weight: bold;
-
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  border-radius: 1rem;
-  text-align: center;
-  font-size: 2rem;
-  letter-spacing: 2px;
-`;
 
 export default Dialogues;

@@ -1,26 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { elementaryData } from "../elementary";
 import styled from "styled-components";
-
+import {
+  DialogueExerciseBox,
+  DialogueExerciseContainer,
+  DialogueOptionButton,
+  SubmitDialogue,
+  ContinueButtonWrapper,
+} from "../style-elementaryComponant";
 import {
   SentenceBasedExerciseContainer,
   BoxContainer,
   OptionButton,
-  SubmitButton,
-  Continue,
 } from "./style-dialogue";
 
-const DialogueExercise = () => {
-  const phrases = elementaryData[0].dialogueExercise;
+const DialogueExercise = ({ Continue, lessonsCurrentIndex }) => {
+  const phrases = elementaryData[lessonsCurrentIndex].dialogueExercise;
 
   const [answers, setAnswers] = useState(Array(phrases.length).fill(""));
   const [showAnswers, setShowAnswers] = useState(false);
   const [score, setScore] = useState(0);
+  const [allAnswersCorrect, setAllAnswersCorrect] = useState(false);
+  const [submitClicked, setSubmitClicked] = useState(false);
+  const [anyWrongAnswer, setAnyWrongAnswer] = useState(false);
 
   const correctAnswers = phrases.map((correct) => correct.correctAnswer);
   const checkAnswers = correctAnswers.join(",") === answers.join(",");
 
-  // Function to handle option selection
   const handleOptionSelect = (questionIndex, option) => {
     const updatedAnswers = [...answers];
     updatedAnswers[questionIndex] = option;
@@ -29,49 +35,52 @@ const DialogueExercise = () => {
 
   const handleSubmit = () => {
     let calculatedScore = 0;
+    let wrongAnswer = false;
+
     phrases.forEach((question, index) => {
       if (question.correctAnswer === answers[index]) {
         calculatedScore++;
+      } else {
+        wrongAnswer = true;
       }
     });
+
     setScore(calculatedScore);
     setShowAnswers(true);
+    setAllAnswersCorrect(calculatedScore === phrases.length);
+    setAnyWrongAnswer(wrongAnswer);
+    setSubmitClicked(true);
   };
 
   const handleRetry = () => {
     setAnswers(Array(phrases.length).fill(""));
     setShowAnswers(false);
     setScore(0);
+    setAllAnswersCorrect(false);
+    setAnyWrongAnswer(false);
+    setSubmitClicked(false);
   };
 
   return (
-    <SentenceBasedExerciseContainer>
+    <DialogueExerciseContainer>
       <h2>Choisissez la bonne réponse.</h2>
-      <BoxContainer>
-        {/* Render each question */}
+      <DialogueExerciseBox>
         {phrases.map((question, index) => {
-          // Find the index of the underscore in the question
           const underscoreIndex = question.message.indexOf("_");
-          // Split the question into before and after the underscore
           const beforeUnderscore = question.message.slice(0, underscoreIndex);
           const afterUnderscore = question.message.slice(underscoreIndex + 5);
 
-          // Create a ref to measure the width of the container
           const containerRef = useRef(null);
-          // State to store the position percentage of the underscore
           const [positionPercentage, setPositionPercentage] = useState(0);
 
           useEffect(() => {
-            // Measure the width of the text before the underscore
             const containerWidth = containerRef.current.offsetWidth;
             const beforeUnderscoreWidth = measureTextWidth(beforeUnderscore);
 
-            // Calculate the position percentage based on the widths
             const position = (beforeUnderscoreWidth / containerWidth) * 100 + 2;
             setPositionPercentage(position);
           }, []);
 
-          // Helper function to measure the width of the text
           const measureTextWidth = (text) => {
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
@@ -83,56 +92,55 @@ const DialogueExercise = () => {
           return (
             <div key={index} ref={containerRef}>
               <p>
-                {/* Render the text before the underscore */}
                 {index + 1}: {beforeUnderscore}
-                {/* Render the options within the underscore */}
                 <span style={{ textDecoration: "underline" }}>
                   {question.options.map((option, optionIndex) => (
-                    <OptionButton
+                    <DialogueOptionButton
                       key={optionIndex}
                       onClick={() => handleOptionSelect(index, option)}
-                      style={{
-                        backgroundColor:
-                          showAnswers && answers[index] === option
-                            ? question.correctAnswer === option
-                              ? "rgb(118, 253, 40)"
-                              : "red"
-                            : answers[index] === option
-                            ? "rgb(253, 253, 40)"
-                            : "initial",
-                        pointerEvents: answers[index] !== "" ? "none" : "auto",
-                      }}
+                      questionCorrectAnswer={question.correctAnswer === option}
+                      usersAnswer={answers[index] === option}
+                      showAnswers={showAnswers && answers[index] === option}
+                      allAnswersCorrect={allAnswersCorrect}
                       disabled={answers[index] !== ""}
                     >
                       {option}
-                    </OptionButton>
+                    </DialogueOptionButton>
                   ))}
                 </span>
-                {/* Render the text after the underscore */}
                 {afterUnderscore}
               </p>
             </div>
           );
         })}
-      </BoxContainer>
-      {/* Submit or Retry button */}
-      <div onClick={showAnswers ? handleRetry : handleSubmit}>
+      </DialogueExerciseBox>
+      <ContinueButtonWrapper>
         {showAnswers ? (
-          <Continue onClick={handleRetry}>Retry</Continue>
+          <div onClick={handleRetry}>
+            {anyWrongAnswer ? <SubmitDialogue>Retry</SubmitDialogue> : Continue}
+          </div>
         ) : (
-          <Continue onClick={handleSubmit}>
-            {checkAnswers ? "Continue" : "Submit"}
-          </Continue>
+          <div onClick={handleSubmit}>
+            {checkAnswers ? (
+              allAnswersCorrect ? (
+                Continue
+              ) : (
+                <SubmitDialogue>Submit</SubmitDialogue>
+              )
+            ) : (
+              <SubmitDialogue>Submit</SubmitDialogue>
+            )}
+          </div>
         )}
-      </div>
-      {/* Display score and congratulations message */}
-      {showAnswers && (
+      </ContinueButtonWrapper>
+
+      {checkAnswers && (
         <BoxContainer>
           <p>Score: {score}</p>
           {score === phrases.length && <p>Good job!</p>}
         </BoxContainer>
       )}
-    </SentenceBasedExerciseContainer>
+    </DialogueExerciseContainer>
   );
 };
 
