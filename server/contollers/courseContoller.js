@@ -1,98 +1,152 @@
-import CourseDataSchema from "../modules/Course.js";
+import CourseDataModel from "../modules/Course.js";
 
-// Fetch dialogues for a specific lesson
-export const getDialogueForLesson = async (req, res) => {
-  const { lessonNumber } = req.params; // Extract the lesson number from the request params
-
+export const getLesson = async (req, res) => {
+  const { lessonNumber } = req.params;
   try {
-    const course = await CourseDataSchema.findOne({
-      lesson: lessonNumber,
-    }); // Find the course that matches the lesson number
-    const dialogue = course.dialogue;
+    const course = await CourseDataModel.findOne({
+      lesson: parseInt(lessonNumber),
+    });
 
-    if (!dialogue) {
-      // Handle the case when dialogue is null
-      return res.status(404).json({ error: "Dialogue not found" });
-    }
     if (!course) {
-      // If the course is not found, return a 404 error
       return res.status(404).json({ error: "Lesson not found" });
     }
 
-    res.status(200).json(dialogue); // Return the dialogue in the response
+    res.status(200).json(course);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+export const getDialogueForLesson = async (req, res) => {
+  const { lessonNumber } = req.params;
+  try {
+    const course = await CourseDataModel.findOne({
+      lesson: parseInt(lessonNumber),
+    });
+
+    if (!course) {
+      return res.status(404).json({ error: "Lesson not found" });
+    }
+
+    const dialogue = course.dialogue;
+
+    if (!dialogue) {
+      return res.status(404).json({ error: "Dialogue not found" });
+    }
+
+    res.status(200).json(dialogue);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-export const getAllVocabulary = async (req, res) => {
+export const getGrammer = async (req, res) => {
   const { lessonNumber } = req.params;
+
   try {
-    const course = await CourseDataSchema.findOne({
+    const course = await CourseDataModel.findOne({
       lesson: parseInt(lessonNumber),
     });
+    console.log("course", course);
+
     if (!course) {
-      // If the course is not found, return a 404 error
       return res.status(404).json({ error: "Lesson not found" });
     }
-    const vocabulary = course.vocabulary;
-    if (!vocabulary) {
-      // If the course is not found, return a 404 error
+
+    const grammer = course.grammer;
+    console.log("grammer", grammer);
+
+    if (!grammer) {
       return res
         .status(404)
         .json({ error: "Vocabulary not found for this lesson" });
     }
-    res.status(200).json(vocabulary);
+
+    res.status(200).json(grammer);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-export const getVerbConjugation = async (req, res) => {
+export const getDialogueExercise = async (req, res) => {
   const { lessonNumber } = req.params;
+
   try {
-    const course = await CourseDataSchema.findOne({
+    const course = await CourseDataModel.findOne({
       lesson: parseInt(lessonNumber),
     });
+
     if (!course) {
-      // If the course is not found, return a 404 error
       return res.status(404).json({ error: "Lesson not found" });
     }
-    const verbsConjugations = course.verbsConjugations;
-    if (!verbsConjugations) {
-      // If the course is not found, return a 404 error
+
+    const dialogueExercise = course.dialogueExercise;
+
+    if (!dialogueExercise) {
       return res
         .status(404)
-        .json({ error: "verbs Conjugations not found for this lesson" });
+        .json({ error: "Verb exercise not found for this lesson" });
     }
-    res.status(200).json(verbsConjugations);
+
+    res.status(200).json(dialogueExercise);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
-export const getVerbExercise = async (req, res) => {
+export const getSentenceBuilder = async (req, res) => {
   const { lessonNumber } = req.params;
+
   try {
-    const course = await CourseDataSchema.findOne({
+    const course = await CourseDataModel.findOne({
       lesson: parseInt(lessonNumber),
     });
+
     if (!course) {
-      // If the course is not found, return a 404 error
       return res.status(404).json({ error: "Lesson not found" });
     }
-    const verbExercise = course.verbExercise;
-    if (!verbExercise) {
-      // If the course is not found, return a 404 error
+
+    const sentenceBuilder = course.sentenceBuilder;
+
+    if (!sentenceBuilder) {
       return res
         .status(404)
-        .json({ error: "verbs verbs Exercise not found for this lesson" });
+        .json({ error: "Sentence builder not found for this lesson" });
     }
-    res.status(200).json(verbExercise);
+
+    res.status(200).json(sentenceBuilder);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const getPhrases = async (req, res) => {
+  const { lessonNumber } = req.params;
+
+  try {
+    const course = await CourseDataModel.findOne({
+      lesson: parseInt(lessonNumber),
+    });
+
+    if (!course) {
+      return res.status(404).json({ error: "Lesson not found" });
+    }
+
+    const phrases = course.phrases;
+
+    if (!phrases) {
+      return res
+        .status(404)
+        .json({ error: "Phrases not found for this lesson" });
+    }
+
+    res.status(200).json(phrases);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
