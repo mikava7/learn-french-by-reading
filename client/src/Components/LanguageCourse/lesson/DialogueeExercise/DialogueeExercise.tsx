@@ -1,7 +1,7 @@
 import React from "react";
 
-const DialogueeExercise = ({ nextButton }) => {
-  return <div>DialogueeExercise{nextButton}</div>;
+const DialogueExercise = ({ Continue }) => {
+  return <div>DialogueeExercise{Continue}</div>;
 };
 
-export default DialogueeExercise;
+export default DialogueExercise;
