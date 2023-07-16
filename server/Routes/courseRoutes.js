@@ -1,17 +1,34 @@
 import express from "express";
 import {
   getDialogueForLesson,
-  getAllVocabulary,
-  getVerbConjugation,
-  getVerbExercise,
+  getGrammer,
+  getDialogueExercise,
+  getSentenceBuilder,
+  getPhrases,
+  getLesson,
 } from "../contollers/courseContoller.js";
 
 const courseRouter = express.Router();
 
-// Get all dialogues
-courseRouter.get("/course/dialogues/:lessonNumber", getDialogueForLesson);
-courseRouter.get("/course/vocabulary/:lessonNumber", getAllVocabulary);
-courseRouter.get("/course/verb-conjugation/:lessonNumber", getVerbConjugation);
-courseRouter.get("/course/verb-exercise/:lessonNumber", getVerbExercise);
+courseRouter.get("/course/elementary/:lessonNumber", getLesson);
+courseRouter.get(
+  "/course/elementary/dialogues/:lessonNumber",
+  getDialogueForLesson
+);
+courseRouter.get("/course/elementary/grammer/:lessonNumber", getGrammer);
+
+courseRouter.get(
+  "/course/elementary/exercise-1/:lessonNumber",
+  getDialogueExercise
+);
+
+// Get sentence builder
+courseRouter.get(
+  "/course/elementary/sentence-builder/:lessonNumber",
+  getSentenceBuilder
+);
+
+// Get phrases
+courseRouter.get("/course/elementary/phrases/:lessonNumber", getPhrases);
 
 export default courseRouter;
