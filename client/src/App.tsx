@@ -26,6 +26,8 @@ import Vocabulary from "./Components/LanguageCourse/lesson/Vocabulary/Voacbulary
 import Dialogues from "./elementary/Dialogue/Dialogues";
 import JaimeEtClaire from "./elementary/JaimeEtClaire";
 import SentenceBuilder from "./elementary/Dialogue/SentenceBuilder";
+import DialogueExercise from "./elementary/Dialogue/DialogueExercise";
+import AudioPlayer from "./Components/AudioPlayer";
 function App() {
   const [theme, setTheme] = React.useState("light");
   const displayNav = true;
@@ -66,15 +68,21 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/lesson" element={<LessonComponent />} />
           <Route path="/course" element={<Course />} />
+          <Route path="/AudioPlayer" element={<AudioPlayer />} />
+
           <Route path="/jaime-et-claire" element={<JaimeEtClaire />} />
+          <Route path="/jaime-et-claire/dialogues" element={<Dialogues />} />
           <Route
             path="/jaime-et-claire/sentence-builder"
             element={<SentenceBuilder />}
           />
+          <Route
+            path="/jaime-et-claire/dialogue-exercise"
+            element={<DialogueExercise />}
+          />
 
           <Route path="/quiz" element={<WordQuiz />} />
           <Route path="/vocabulary" element={<Vocabulary />} />
-          <Route path="/dialogues" element={<Dialogues />} />
 
           <Route
             path="/GrammerWithDialogue"
